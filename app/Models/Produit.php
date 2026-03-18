@@ -31,6 +31,7 @@ class Produit extends Model
      */
     public function category()
     {
+        // 1. modèle lié. 2. sa clé étrangère 3. sa clé primaire
         return $this->belongsTo(Categorie::class, 'categorie_id');
     }
 
@@ -52,4 +53,13 @@ class Produit extends Model
             ->saveSlugsTo('slug_produit');
     }
 
+    /**
+     * Get the route key for the model (binding model).
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug_produit';
+    }
 }

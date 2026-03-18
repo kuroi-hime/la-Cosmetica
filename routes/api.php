@@ -14,3 +14,4 @@ Route::post('/login', [AuthController::class, 'login'])->name('users.login');
 
 Route::get('/categories', [CategorieController::class, 'index'])->name('categories.index');
 Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
+Route::get('/produits/{produit}', [ProduitController::class, 'show'])->name('produits.show');

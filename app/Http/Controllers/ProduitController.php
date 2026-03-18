@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
-use App\Http\Resources\ProduitResource;
 use App\Models\Produit;
 
 class ProduitController extends Controller
@@ -35,7 +34,11 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+        $produit = Produit::findBySlug($produit->slug_produit);
+
+        return response()->json([
+            'produit' => $produit,
+        ]);
     }
 
     /**
