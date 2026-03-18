@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
+use App\Http\Resources\ProduitResource;
+use App\Models\Produit;
 
 class ProduitController extends Controller
 {
@@ -14,7 +15,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produit::with('images')->get();
+        $produits = Produit::with(['category', 'images'])->get()->toResourceCollection();
 
         return response()->json([
             'prouits' => $produits,

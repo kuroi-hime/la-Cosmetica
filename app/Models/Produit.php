@@ -29,7 +29,10 @@ class Produit extends Model
     /**
      * Get the product's category
      */
-
+    public function category()
+    {
+        return $this->belongsTo(Categorie::class, 'categorie_id');
+    }
 
     /**
      * Get all of the product's images.
