@@ -34,7 +34,7 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        $produit = Produit::findBySlug($produit->slug_produit);
+        $produit = Produit::findBySlug($produit->slug_produit)->toResource();
 
         return response()->json([
             'produit' => $produit,

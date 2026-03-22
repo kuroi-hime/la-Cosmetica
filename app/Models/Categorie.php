@@ -14,7 +14,7 @@ class Categorie extends Model
     ];
 
     /**
-     * 
+     * Get the products for the current category
      */
     public function products()
     {
