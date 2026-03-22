@@ -17,7 +17,9 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+
+        ]);
     }
 
     /**
@@ -65,7 +67,11 @@ class CommandeController extends Controller
      */
     public function show(Commande $commande)
     {
-        //
+        $commande = Commande::find($commande->id_commande);
+
+        return response()->json([
+            'commande' => $commande
+        ]);
     }
 
     /**
