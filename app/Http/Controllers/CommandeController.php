@@ -79,7 +79,22 @@ class CommandeController extends Controller
      */
     public function update(UpdateCommandeRequest $request, Commande $commande)
     {
-        //
+        if($commande->statut_commande == 'en attente')
+        {
+            if($request->filled('quantite'))
+                CommandeProduit::findWhere('commande_id', $commande->id_commande)->update(['quantite_produit' => $request->quantite]);
+            if($request->filled('status'))
+                $commande->update(['statut_commande' => $request->status]);
+
+            return response()->json([
+                'message' => 'Mise à jour de commande effectuée.',
+                'commande' => $commande
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Mise à jour de commande non effectuée.'
+        ]);
     }
 
     /**

@@ -18,3 +18,4 @@ Route::get('/produits', [ProduitController::class, 'index'])->name('produits.ind
 Route::get('/produits/{produit}', [ProduitController::class, 'show'])->name('produits.show');
 Route::post('/produits/{slug}/passer-commande', [CommandeController::class, 'store'])->name('commandes.add');
 Route::get('/commandes/{commande}', [CommandeController::class, 'show'])->name('commandes.show');
+Route::patch('/commandes/{commande}', [CommandeController::class, 'update'])->name('commandes.update');
