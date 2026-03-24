@@ -26,7 +26,12 @@ class CategorieController extends Controller
      */
     public function store(StoreCategorieRequest $request)
     {
-        //
+        $categorie = Categorie::create($request->validated());
+
+        return response()->json([
+            'message' => 'Catégorie créé avec succés.',
+            'categorie' => $categorie
+        ]);
     }
 
     /**
@@ -42,7 +47,12 @@ class CategorieController extends Controller
      */
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
-        //
+        $categorie->update($request->validated());
+
+        return response()->json([
+            'message' => 'Catégorie mise à jour avec succés.',
+            'categorie' => $categorie
+        ]);
     }
 
     /**
@@ -50,6 +60,10 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie->delete();
+
+        return response()->json([
+            'message' => 'Catégorie supprimer avec succés.'
+        ]);
     }
 }

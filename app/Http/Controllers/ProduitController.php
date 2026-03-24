@@ -26,7 +26,12 @@ class ProduitController extends Controller
      */
     public function store(StoreProduitRequest $request)
     {
-        //
+        $produit = Produit::create($request->validated());
+
+        return response()->json([
+            'message' => 'Produit ajouté avec succés.',
+            'produit' => $produit
+        ]);
     }
 
     /**
@@ -46,7 +51,13 @@ class ProduitController extends Controller
      */
     public function update(UpdateProduitRequest $request, Produit $produit)
     {
-        //
+        // il recherche automatiquement par slug
+        $produit->update($request->validated());
+
+        return response()->json([
+            'message' => 'Produit mise à jour avec succés.',
+            'produit' => $produit
+        ]);
     }
 
     /**
@@ -54,6 +65,12 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
-        //
+        $produit->commandes()->detach();
+        
+        $produit->delete();
+
+        return response()->json([
+            'message' => 'Produit supprimé avec succés.'
+        ]);
     }
 }

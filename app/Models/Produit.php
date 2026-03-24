@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use App\Models\Commande;
 
 class Produit extends Model
 {
@@ -61,5 +62,18 @@ class Produit extends Model
     public function getRouteKeyName()
     {
         return 'slug_produit';
+    }
+
+    /**
+     * 
+     */
+    public function commandes()
+    {
+        return $this->belongsToMany(
+            Commande::class, 
+            'commande_produit', 
+            'commande_id', // Foreign key on pivot table for Commande
+            'produit_id'   // Foreign key on pivot table for Produit
+            )->using(CommandeProduit::class);
     }
 }
