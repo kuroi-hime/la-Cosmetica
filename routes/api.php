@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\StatiquesController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
@@ -26,3 +27,6 @@ Route::delete('/produits/{produit}', [ProduitController::class, 'destroy'])->nam
 Route::post('/produits/{slug}/passer-commande', [CommandeController::class, 'store'])->name('commandes.add');
 Route::get('/commandes/{commande}', [CommandeController::class, 'show'])->name('commandes.show');
 Route::patch('/commandes/{commande}', [CommandeController::class, 'update'])->name('commandes.update');
+Route::get('/statistiques/ventes', [StatiquesController::class, 'ventes'])->name('statistiques.ventes');
+Route::get('/statistiques/most-ordered', [StatiquesController::class, 'populaires']);
+Route::get('/statistiques/products-by-categories', [StatiquesController::class, 'produitsParCategorie']);
